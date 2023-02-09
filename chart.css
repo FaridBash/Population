@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#countries{
+    width: 90%;
+    height: 100px;
+    display: flex;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    padding: 5px;
+    align-items: center;
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    /* margin: auto; */
+    
+}
+
+h4{
+    width: max-content;
+    /* height: 3rem; */
+    padding: 0.3rem;
+    font-size: 12px;
+    list-style: none;
+    margin: 5px;
+    background: rgb(100, 151, 240);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 10px;
+    text-align: center;
+
+}
