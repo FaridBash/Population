@@ -1,103 +1,99 @@
+import { printCountries, spinner, countryNameArr, countryPopulationArr} from './cont.js'
 
 const africa=document.getElementById('africa');
 const america=document.getElementById('america');
 const asia=document.getElementById('asia');
 const europe=document.getElementById('europe');
 const oceania=document.getElementById('oceania');
-const countriesSection = document.getElementById('countries');
-const spinner=document.getElementsByClassName('spinner')[0];
+// const countriesSection = document.getElementById('countries');
+// const spinner=document.getElementsByClassName('spinner')[0];
 let continent='';
 
 africa.addEventListener('click',e=>{ 
     continent='Africa';
     printCountries(continent);
-    console.log(continent);
     
 });
 america.addEventListener('click',e=>{ 
     continent='Americas';
-    console.log(continent);
     printCountries(continent);
     
 });
 asia.addEventListener('click',e=>{ 
     continent='Asia';
-    console.log(continent);
     printCountries(continent);
     
     
 });
 europe.addEventListener('click',e=>{ 
     continent='Europe';
-    console.log(continent);
     printCountries(continent);
     
 });
 oceania.addEventListener('click',e=>{ 
     continent='Oceania'; 
-    console.log(continent);
     printCountries(continent);
 });
 
 
 
 
-async function getContinent(c){
-    try {
+// async function getContinent(c){
+//     try {
         
-        spinner.removeAttribute('hidden');
-        const getCont= await fetch(`https://restcountries.com/v2/region/${c}`)
-        const data= await getCont.json();
-        spinner.setAttribute('hidden', '');
-        console.log(data);
-        // console.log("spinner", spinner.style.display);
-        // if(getCont==undefined){
-        //     spinner.style.display='block';
-        // }
-        // else {
-        //     spinner.style.display='none';
-        // }
+//         spinner.removeAttribute('hidden');
+//         const getCont= await fetch(`https://restcountries.com/v2/region/${c}`)
+//         const data= await getCont.json();
+//         spinner.setAttribute('hidden', '');
+//         console.log(data);
+//         // console.log("spinner", spinner.style.display);
+//         // if(getCont==undefined){
+//         //     spinner.style.display='block';
+//         // }
+//         // else {
+//         //     spinner.style.display='none';
+//         // }
         
-        return data;
+//         return data;
         
-        } catch (error) {
-            console.log("Coudn't fetch your request");
-        }
+//         } catch (error) {
+//             console.log("Coudn't fetch your request");
+//         }
         
-        }
+//         }
 
         
-async function printCountries(c){
-    countriesSection.innerHTML='';
-    const countries= await getContinent(c);
-    console.log("countries:",countries);
-    console.log("type: ",typeof countries);
+// async function printCountries(c){
+//     countriesSection.innerHTML='';
+//     const countries= await getContinent(c);
+//     console.log("countries:",countries);
+//     console.log("type: ",typeof countries);
 
-    for (let i = 0; i < countries.length; i++) {
-                const element = countries[i];
-                console.log(element.name)
-                const country = document.createElement('h4');
-                country.innerText=element.name;
-                countriesSection.appendChild(country);
+//     for (let i = 0; i < countries.length; i++) {
+//                 const element = countries[i];
+//                 console.log(element.name)
+//                 const country = document.createElement('h4');
+//                 country.innerText=element.name;
+//                 countriesSection.appendChild(country);
         
                 
-            }
+//             }
 
-}
+// }
 
 
-function getPopulation(c){
-    let pop=0;
-    const cont=getContinent(c);
-    const cities=getCities.filter(u=>
-        u.name=cont.name);
-    for (let i = 0; i < cities.length; i++) {
-        const element = cities[i];
-        pop+=element.population;
+// function getPopulation(c){
+//     let pop=0;
+//     const cont=getContinent(c);
+//     // const cities=getCities.filter(u=>
+//     //     u.name=cont.name);
+//     for (let i = 0; i < cities.length; i++) {
+//         const element = cities[i];
+//         pop+=element.population;
         
-    }
-    return pop;
-}
+//     }
+//     return pop;
+// }
 
 
 async function getCities(){
@@ -139,5 +135,30 @@ async function getCities(){
         
         }
 
+        // console.log(printCities);
+        // console.log("pop africa: ", getPopulation('Africa'));
 
-        console.log("pop africa: ", getPopulation('Africa'));
+
+         // import { countryNameArr, countryPopulationArr } from "./cont.js";
+    //   const ctx = document.getElementById("myChart");
+
+    //   new Chart(ctx, {
+    //     type: "bar",
+    //     data: {
+    //       labels: countryNameArr,
+    //       datasets: [
+    //         {
+    //           label: "# of Votes",
+    //           data: countryPopulationArr,
+    //           borderWidth: 1,
+    //         },
+    //       ],
+    //     },
+    //     options: {
+    //       scales: {
+    //         y: {
+    //           beginAtZero: true,
+    //         },
+    //       },
+    //     },
+    //   });
