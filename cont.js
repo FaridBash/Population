@@ -1,4 +1,4 @@
-
+import { continent } from "./index.js";
 const countriesSection = document.getElementById('countries');
 export const spinner=document.getElementsByClassName('spinner')[0];
 export let countryDataArr=[];
@@ -42,11 +42,13 @@ export async function printCountries(c){
                 const country = document.createElement('h4');
                 country.innerText=element.name;
                 countriesSection.appendChild(country);
+
                 countryDataObj.name=element.name;
                 countryDataObj.population=element.population;
                 countryDataObj.neighbours=element.borders;
                 // console.log((countryDataObj.neighbours));
                 countryDataArr.push(countryDataObj);
+                console.log("cccccccccc: ",c);
                 
                 
                 
@@ -89,18 +91,40 @@ export async function printCountries(c){
         },
 
         options: {
-            title:{
-                display:true,
-                text:'TEst',
-                fontSize:25
-            },
             scales: {
                 y: {
                     beginAtZero: true,
+                    ticks:{
+                        color:"#fff"
+                    }
                 },
                 Neigbours:{
                     beginAtZero: true,
-                    position:'right'
+                    position:'right',
+                    ticks:{
+                        color:"#fff"
+                    }
+                    
+                },
+                x:{
+                    
+                    ticks:{
+                        color:"#fff"
+                    }
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: ` Continent of ${continent}`,
+                    color:"#fff",
+                    font:{  
+                        size:20
+                    }
+                
+                },
+                label:{
+                    fontColor:['rgba(255,104,104,1)']
                 }
             },
         },

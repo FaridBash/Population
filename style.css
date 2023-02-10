@@ -126,7 +126,7 @@ h4{
       width: 50vw;
       height: 20%;
       color: #fff;
-      background: #ffffff;
+      /* background: rgba(157, 197, 205, 0.5); */
       margin: 2rem;
       border-radius: 10px;
       display: none;

@@ -7,7 +7,7 @@ const europe=document.getElementById('europe');
 const oceania=document.getElementById('oceania');
 // const countriesSection = document.getElementById('countries');
 // const spinner=document.getElementsByClassName('spinner')[0];
-let continent='';
+export let continent='';
 
 africa.addEventListener('click',e=>{ 
     // myChart.destroy();
