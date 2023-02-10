@@ -24,16 +24,15 @@ body {
 }
 #countries{
     width: 90%;
-    height: 100px;
+    height: 10%;
     display: flex;
     flex-shrink: 1;
     flex-wrap: wrap;
-    padding: 5px;
+    padding: 0rem 3rem;
     align-items: center;
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    /* margin: auto; */
+    justify-content: left;
+    margin: 3rem;
+    overflow-y: scroll;
     
 }
 
@@ -41,13 +40,12 @@ h4{
     width: max-content;
     /* height: 3rem; */
     padding: 0.3rem;
-    font-size: 12px;
     list-style: none;
     margin: 5px;
     background: rgb(100, 151, 240);
     color: #fff;
     border-radius: 10px;
-    font-size: 10px;
+    font-size: 16px;
     text-align: center;
 
 }
@@ -115,9 +113,18 @@ h4{
      }
      
 
-     #myChart{
-      width: 40rem;
-      height: 10rem;
+     #Chart{
+      width: 40%;
+      height: 15%;
+      color: #fff;
+      background: #ffffff;
+      margin: 2rem;
+      border-radius: 10px;
+    }
+
+    #myChart{
+      width: 100%;
+      height: 100%;
       color: #fff;
       background: #ffffff;
       margin: 2rem;
@@ -144,8 +151,8 @@ h4{
       }
   
       #main-section{
-          width: 100vw;
-          border: 1px solid green;
+          width: 90vw;
+          border: 1px solid transparent;
           align-items: center;
           padding: 1rem;
           margin-top: 3rem;
@@ -164,12 +171,19 @@ h4{
       .btn{
           margin: 0.5rem;
       }
+
+      #countries{
+        height: 10rem;
+        margin: auto;
+      }
+
+
     }
   
 
 
 
-    .spinner {
+    .spinner:not([hidden]) {
         margin: 100px auto;
         width: 40px;
         height: 40px;
@@ -177,7 +191,7 @@ h4{
         text-align: center;
         -webkit-animation: sk-rotate 2.0s infinite linear;
         animation: sk-rotate 2.0s infinite linear;
-        display: none;
+        /* display: none; */
       }
       
       .dot1, .dot2 {

@@ -45,17 +45,18 @@ oceania.addEventListener('click',e=>{
 async function getContinent(c){
     try {
         
-    
+        spinner.removeAttribute('hidden');
         const getCont= await fetch(`https://restcountries.com/v2/region/${c}`)
         const data= await getCont.json();
+        spinner.setAttribute('hidden', '');
         console.log(data);
         // console.log("spinner", spinner.style.display);
-        if(getCont==undefined){
-            spinner.style.display='block';
-        }
-        else {
-            spinner.style.display='none';
-        }
+        // if(getCont==undefined){
+        //     spinner.style.display='block';
+        // }
+        // else {
+        //     spinner.style.display='none';
+        // }
         
         return data;
         
@@ -85,10 +86,24 @@ async function printCountries(c){
 }
 
 
-async function getCities(c){
+function getPopulation(c){
+    let pop=0;
+    const cont=getContinent(c);
+    const cities=getCities.filter(u=>
+        u.name=cont.name);
+    for (let i = 0; i < cities.length; i++) {
+        const element = cities[i];
+        pop+=element.population;
+        
+    }
+    return pop;
+}
+
+
+async function getCities(){
     try {
         
-    
+        spinner.removeAttribute('hidden');
         const getCont= await fetch(`https://countriesnow.space/api/v0.1/countries/population/cities`,{
             method:'GET',
             headers:{
@@ -102,22 +117,27 @@ async function getCities(c){
             }
                 })
         const data= await getCont.json();
-        console.log(data);
-        // console.log("spinner", spinner.style.display);
-        // if(getCont==undefined){
-        //     spinner.style.display='block';
-        // }
-        // else {
-        //     spinner.style.display='none';
-        // }
-        
+        spinner.setAttribute('hidden', '');
+        console.log(data);        
         return data;
         
         } catch (error) {
             console.log("Coudn't fetch your request");
         }
         
+    }
+
+
+        async function printCities(){
+            
+            const allCities= await getCities();
+        
+            for (let i = 0; i < allCities.length; i++) {
+                        const element = countries[i];
+                        console.log(element.name);                        
+                    }
+        
         }
 
 
-        getCities('Israel');
+        console.log("pop africa: ", getPopulation('Africa'));
