@@ -44,6 +44,8 @@ export async function printCountries(c){
                 countriesSection.appendChild(country);
                 countryDataObj.name=element.name;
                 countryDataObj.population=element.population;
+                countryDataObj.neighbours=element.borders;
+                // console.log((countryDataObj.neighbours));
                 countryDataArr.push(countryDataObj);
                 
                 
@@ -66,15 +68,22 @@ export async function printCountries(c){
             labels: objArr.map(n=>n.name),
             datasets: [
                 {
-                    label: "label",
+                    label: "Population",
                     data: objArr.map(n=>n.population),
                     backgroundColor:[
-                        '#68BBE3',
-                        '#0E86D4',
-                        '#055C9D',
-                        '#003060',
+                        '#68BBE3'
                     ],
                     borderWidth: 1,
+                    yAxisID:'y'
+                },
+                {
+                    label: "# Of Neighbours",
+                    data:objArr.map(n=>n.neighbours!=undefined? n.neighbours.length:0),
+                    backgroundColor:[
+                        '#F79489'
+                    ],
+                    borderWidth: 1,
+                    yAxisID:'Neigbours'
                 },
             ],
         },
@@ -89,6 +98,10 @@ export async function printCountries(c){
                 y: {
                     beginAtZero: true,
                 },
+                Neigbours:{
+                    beginAtZero: true,
+                    position:'right'
+                }
             },
         },
     });
