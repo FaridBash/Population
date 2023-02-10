@@ -1,9 +1,11 @@
 
 const countriesSection = document.getElementById('countries');
 export const spinner=document.getElementsByClassName('spinner')[0];
-export const countryNameArr=[];
+export let countryDataArr=[];
 export const countryPopulationArr=[];
-
+const ctx = document.getElementById("myChart");
+let mychart=new Chart(ctx,{});
+ctx.style.display='none';
 export async function getContinent(c){
     try {
         
@@ -29,49 +31,60 @@ export async function getContinent(c){
 
         
 export async function printCountries(c){
+    // myChart(countryDataArr).destroy();
     countriesSection.innerHTML='';
     const countries= await getContinent(c);
-
+    countryDataArr=[];
     for (let i = 0; i < countries.length; i++) {
                 const element = countries[i];
-                // const countryData={};
+                const countryDataObj={};
                 // console.log(element);
                 const country = document.createElement('h4');
                 country.innerText=element.name;
                 countriesSection.appendChild(country);
-                // countryData.name=element.name;
-                // countryData.population=element.population;
-                countryNameArr.push(element.name);
-                countryPopulationArr.push(element.population);
-        
+                countryDataObj.name=element.name;
+                countryDataObj.population=element.population;
+                countryDataArr.push(countryDataObj);
+                
+                
                 
             }
-
-        console.log(countryNameArr);
-        console.log(countryPopulationArr);
-
-            updateChart(countryNameArr, countryPopulationArr);
+            
+            drawChart(countryDataArr);
+            
+            
 
     }
 
 
-async function updateChart(cname, cpop){
+    export const drawChart=function updateChart(objArr){
 
-    const ctx = document.getElementById("myChart");
-    
-    await new Chart(ctx, {
+    mychart.destroy();
+    mychart=new Chart(ctx, {
         type: "line",
         data: {
-            labels: cname,
+            labels: objArr.map(n=>n.name),
             datasets: [
                 {
                     label: "label",
-                    data: cpop,
+                    data: objArr.map(n=>n.population),
+                    backgroundColor:[
+                        '#68BBE3',
+                        '#0E86D4',
+                        '#055C9D',
+                        '#003060',
+                    ],
                     borderWidth: 1,
                 },
             ],
         },
+
         options: {
+            title:{
+                display:true,
+                text:'TEst',
+                fontSize:25
+            },
             scales: {
                 y: {
                     beginAtZero: true,

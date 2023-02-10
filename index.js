@@ -1,4 +1,4 @@
-import { printCountries, spinner, countryNameArr, countryPopulationArr} from './cont.js'
+import { printCountries, spinner} from './cont.js'
 
 const africa=document.getElementById('africa');
 const america=document.getElementById('america');
@@ -10,27 +10,32 @@ const oceania=document.getElementById('oceania');
 let continent='';
 
 africa.addEventListener('click',e=>{ 
+    // myChart.destroy();
     continent='Africa';
     printCountries(continent);
     
 });
 america.addEventListener('click',e=>{ 
+    // myChart.destroy();
     continent='Americas';
     printCountries(continent);
     
 });
 asia.addEventListener('click',e=>{ 
+    // myChart.destroy();
     continent='Asia';
     printCountries(continent);
     
     
 });
 europe.addEventListener('click',e=>{ 
+    // myChart.destroy();
     continent='Europe';
     printCountries(continent);
     
 });
 oceania.addEventListener('click',e=>{ 
+    // myChart.destroy();
     continent='Oceania'; 
     printCountries(continent);
 });
@@ -135,30 +140,3 @@ async function getCities(){
         
         }
 
-        // console.log(printCities);
-        // console.log("pop africa: ", getPopulation('Africa'));
-
-
-         // import { countryNameArr, countryPopulationArr } from "./cont.js";
-    //   const ctx = document.getElementById("myChart");
-
-    //   new Chart(ctx, {
-    //     type: "bar",
-    //     data: {
-    //       labels: countryNameArr,
-    //       datasets: [
-    //         {
-    //           label: "# of Votes",
-    //           data: countryPopulationArr,
-    //           borderWidth: 1,
-    //         },
-    //       ],
-    //     },
-    //     options: {
-    //       scales: {
-    //         y: {
-    //           beginAtZero: true,
-    //         },
-    //       },
-    //     },
-    //   });
