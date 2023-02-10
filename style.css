@@ -24,15 +24,15 @@ body {
 }
 #countries{
     width: 90%;
-    height: 10%;
+    height: fit-content;
     display: flex;
     flex-shrink: 1;
     flex-wrap: wrap;
     padding: 0rem 3rem;
     align-items: center;
     justify-content: left;
-    margin: 3rem;
-    overflow-y: scroll;
+    margin: auto;
+    /* overflow-y: scroll; */
     
 }
 
@@ -175,6 +175,7 @@ h4{
       #countries{
         height: 10rem;
         margin: auto;
+        overflow-y: scroll;
       }
 
 
