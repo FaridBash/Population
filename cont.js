@@ -2,7 +2,6 @@ import { continent } from "./index.js";
 const countriesSection = document.getElementById('countries');
 export const spinner=document.getElementsByClassName('spinner')[0];
 export let countryDataArr=[];
-export const countryPopulationArr=[];
 const ctx = document.getElementById("myChart");
 let mychart=new Chart(ctx,{});
 ctx.style.display='none';
@@ -31,37 +30,33 @@ export async function getContinent(c){
 
         
 export async function printCountries(c){
-    // myChart(countryDataArr).destroy();
+    
     countriesSection.innerHTML='';
     const countries= await getContinent(c);
     countryDataArr=[];
     for (let i = 0; i < countries.length; i++) {
                 const element = countries[i];
                 const countryDataObj={};
-                // console.log(element);
+                console.log(element);
                 const country = document.createElement('h4');
                 country.innerText=element.name;
+                country.setAttribute('id',element.name);
                 countriesSection.appendChild(country);
 
                 countryDataObj.name=element.name;
                 countryDataObj.population=element.population;
                 countryDataObj.neighbours=element.borders;
-                // console.log((countryDataObj.neighbours));
+                
                 countryDataArr.push(countryDataObj);
-                console.log("cccccccccc: ",c);
-                
-                
                 
             }
             
             drawChart(countryDataArr);
             
-            
-
     }
 
 
-    export const drawChart=function updateChart(objArr){
+   const drawChart=function updateChart(objArr){
 
     mychart.destroy();
     mychart=new Chart(ctx, {
