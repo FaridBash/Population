@@ -1,4 +1,5 @@
 import { spinner, countryDataArr } from "./cont.js";
+import { drawChart } from "./chartIndex.js";
 
 const citiesObjArr = [];
 const citiesInCountry = [];
@@ -30,7 +31,7 @@ export async function getCities() {
     );
     const data = await getCont.json();
     spinner.setAttribute("hidden", "");
-    console.log(data.data);
+    // console.log(data.data);
     return data.data;
   } catch (error) {
     console.log("Coudn't fetch your request");
@@ -47,8 +48,8 @@ export async function getCitiesForCountry(arr1, c) {
     if (e.country.toLowerCase() === c.toLowerCase()) {
       citiesObj.country = c;
       citiesObj.city = e.city;
-      // citiesArr.push(e.city);
       citiesObj.populationCounts = e.populationCounts;
+      citiesObj.populationDisplay=e.populationCounts[0].value;
       citiesArr.push(citiesObj);
       MyCountry.push(citiesObj);
     }
@@ -59,184 +60,34 @@ export async function getCitiesForCountry(arr1, c) {
     });
     citiesObj = {};
   });
-  // citiesArr=[];
-
-  // arr1.forEach(country => {
-  //     citiesArr=[];
-  //     arr2.forEach(city=>{
-  //         citiesObj={};
-  //         if(country.name===city.country){
-  //             citiesObj.city=city.city;
-  //             // citiesArr.push(e.city);
-  //             citiesObj.populationCounts=city.populationCounts;
-  //             citiesArr.push(citiesObj);
-  //             // console.log(citiesArr);
-  //         }
-  //     });
-  //     country.cities=citiesArr;
-  // });
-  // console.log('arrrrr: ',arr1);
-  // drawChart(MyCountry);
-//   drawChart(MyCountry)
+  const y=MyCountry.map((n) => n.populationDisplay);
+  const x=MyCountry.map((n) => n.city);
+  const yearsAxis={
+            //   label: "# Of Neighbours",
+            //   data: countryDataArr.map((n) =>
+            //     n.neighbours != undefined ? n.neighbours.length : 0
+            //   ),
+            //   backgroundColor: ["#F79489"],
+            //   borderWidth: 1,
+            //   borderColor: "#F79489",
+            //   yAxisID: "Neigbours",
+            };
+    drawChart(x, y, "Population",yearsAxis);
   console.log(MyCountry)
   return MyCountry;
 }
 
 
-
-// export const drawChart = function updateChart(objArr) {
-//   mychart.destroy();
-//   mychart = new Chart(ctx2, {
-//     type: "line",
-//     data: {
-//       labels: objArr.map((n) => n.city),
-//       datasets: [
-//         {
-//           label: "Population",
-//           data: objArr.map((n) => n.populationCounts[0]),
-//           backgroundColor: ["#68BBE3"],
-//           borderWidth: 1,
-//           yAxisID: "y",
-//           borderColor: "#6497F0",
-//         },
-//         {
-//           label:objArr.map((n) => n.year) ,
-//           data: objArr.map((n) => n.year
-//             // n.neighbours != undefined ? n.neighbours.length : 0
+// const y=countryDataArr.map((n) => n.population);
+// const x=countryDataArr.map((n) => n.name);
+// const neighboursAxis={
+//           label: "# Of Neighbours",
+//           data: countryDataArr.map((n) =>
+//             n.neighbours != undefined ? n.neighbours.length : 0
 //           ),
 //           backgroundColor: ["#F79489"],
 //           borderWidth: 1,
 //           borderColor: "#F79489",
 //           yAxisID: "Neigbours",
-//         },
-//       ],
-//     },
-
-//     options: {
-//       scales: {
-//         y: {
-//           beginAtZero: true,
-//           ticks: {
-//             color: "#fff",
-//           },
-//           grid: {
-//             color: "#fff",
-//           },
-//         },
-//         Neigbours: {
-//           beginAtZero: true,
-//           position: "right",
-//           ticks: {
-//             color: "#fff",
-//           },
-//           grid: {
-//             color: "transparent",
-//           },
-//         },
-//         x: {
-//           ticks: {
-//             color: "#fff",
-//           },
-//           grid: {
-//             color: "#fff",
-//           },
-//         },
-//       },
-//       plugins: {
-//         title: {
-//           display: true,
-//           text: ` Continent of ${continent}`,
-//           color: "#fff",
-//           font: {
-//             size: 20,
-//           },
-//         },
-//       },
-//     },
-//   });
-// };
-
-// export async function printCities(){
-//     const allCities= await getCities();
-//     console.log(allCities);
-//     // const finalArr=getCitiesForCountry(countryDataArr, allCities);
-//     // console.log(finalArr);
-//     // const newArr=countryDataArr.map(getCitiesForCountry)
-//     for (let i = 0; i < allCities.length; i++) {
-//                 const element = allCities[i];
-//                 // if(element.city===country){
-//                 // }
-//                 console.log(element);
-//             }
-
-// }
-
-// const drawChart=function updateChart(objArr){
-
-//     mychart.destroy();
-//     mychart=new Chart(ctx2, {
-//         type: "line",
-//         data: {
-//             labels: objArr.map(n=>n.city),
-//             datasets: [
-//                 {
-//                     label: "Population",
-//                     data: objArr.map(n=>n.population),
-//                     backgroundColor:[
-//                         '#68BBE3'
-//                     ],
-//                     borderWidth: 1,
-//                     yAxisID:'y'
-//                 },
-//                 // {
-//                 //     label: "# Of Neighbours",
-//                 //     data:objArr.map(n=>n.neighbours!=undefined? n.neighbours.length:0),
-//                 //     backgroundColor:[
-//                 //         '#F79489'
-//                 //     ],
-//                 //     borderWidth: 1,
-//                 //     yAxisID:'Neigbours'
-//                 // },
-//             ],
-//         },
-
-//         options: {
-//             scales: {
-//                 y: {
-//                     beginAtZero: true,
-//                     ticks:{
-//                         color:"#fff"
-//                     }
-//                 },
-//                 Neigbours:{
-//                     beginAtZero: true,
-//                     position:'right',
-//                     ticks:{
-//                         color:"#fff"
-//                     }
-
-//                 },
-//                 x:{
-
-//                     ticks:{
-//                         color:"#fff"
-//                     }
-//                 }
-//             },
-//             plugins: {
-//                 title: {
-//                     display: true,
-//                     text: ` Continent of ${continent}`,
-//                     color:"#fff",
-//                     font:{
-//                         size:20
-//                     }
-
-//                 },
-//                 label:{
-//                     fontColor:['rgba(255,104,104,1)']
-//                 }
-//             },
-//         },
-//     });
-// }
+//         };
+// drawChart(x, y, "Population", neighboursAxis);

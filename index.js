@@ -6,6 +6,7 @@ const america=document.getElementById('america');
 const asia=document.getElementById('asia');
 const europe=document.getElementById('europe');
 const oceania=document.getElementById('oceania');
+// const h4=document.getElementsByTagName('h4');
 // const spinner=document.getElementsByClassName('spinner')[0];
 export let continent='';
 
@@ -37,11 +38,23 @@ oceania.addEventListener('click',e=>{
 });
 
 
+// articles = document.getElementsByTagName('article');
+// for (let i = 0; i < h4.length; i++) {
+//     h4[i].addEventListener('click',redirect,false);
+// }
+// function redirect(ev){
+//     alert(ev.target.id);
+// }
+
+
+
 window.addEventListener('click', e=>{
    const item=e.target;
    const country=item.getAttribute('id');
 //    console.log(item.getAttribute('id'));
-   console.log(getCitiesForCountry(countryDataArr, country));
+if(item.getAttribute('city')==='true'){
+    console.log(getCitiesForCountry(countryDataArr, country));
+}
 
 
 

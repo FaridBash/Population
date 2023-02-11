@@ -35,6 +35,7 @@ export async function printCountries(c) {
     const countryDataObj = {};
     // console.log(element);
     const country = document.createElement("h4");
+    country.setAttribute('city','true');
     country.innerText = element.name;
     country.setAttribute("id", element.name);
     countriesSection.appendChild(country);
