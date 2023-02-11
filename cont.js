@@ -1,25 +1,14 @@
-// import { continent } from "./index.js";
+import { continent } from "./index.js";
 import { drawChart } from "./chartIndex.js";
 const countriesSection = document.getElementById("countries");
 export const spinner = document.getElementsByClassName("spinner")[0];
 export let countryDataArr = [];
-// const ctx = document.getElementById("myChart");
-// let mychart = new Chart(ctx, {});
-// ctx.style.display = "none";
 export async function getContinent(c) {
   try {
     spinner.removeAttribute("hidden");
     const getCont = await fetch(`https://restcountries.com/v2/region/${c}`);
     const data = await getCont.json();
     spinner.setAttribute("hidden", "");
-    // console.log("spinner", spinner.style.display);
-    // if(getCont==undefined){
-    //     spinner.style.display='block';
-    // }
-    // else {
-    //     spinner.style.display='none';
-    // }
-
     return data;
   } catch (error) {
     console.log("Coudn't fetch your request");
@@ -35,7 +24,7 @@ export async function printCountries(c) {
     const countryDataObj = {};
     // console.log(element);
     const country = document.createElement("h4");
-    country.setAttribute('city','true');
+    country.setAttribute("city", "true");
     country.innerText = element.name;
     country.setAttribute("id", element.name);
     countriesSection.appendChild(country);
@@ -46,22 +35,21 @@ export async function printCountries(c) {
 
     countryDataArr.push(countryDataObj);
   }
-  const y=countryDataArr.map((n) => n.population);
-  const x=countryDataArr.map((n) => n.name);
-  const neighboursAxis={
-            label: "# Of Neighbours",
-            data: countryDataArr.map((n) =>
-              n.neighbours != undefined ? n.neighbours.length : 0
-            ),
-            backgroundColor: ["#F79489"],
-            borderWidth: 1,
-            borderColor: "#F79489",
-            yAxisID: "Neigbours",
-          };
-  drawChart(x, y, "Population", neighboursAxis);
+  const y = countryDataArr.map((n) => n.population);
+  const x = countryDataArr.map((n) => n.name);
+  const neighboursAxis = {
+    label: "# Of Neighbours",
+    data: countryDataArr.map((n) =>
+      n.neighbours != undefined ? n.neighbours.length : 0
+    ),
+    backgroundColor: ["#F79489"],
+    borderWidth: 1,
+    borderColor: "#F79489",
+    yAxisID: "Neigbours",
+  };
+  const title = ` CONTINENT OF ${continent.toUpperCase()}`;
+  drawChart(x, y, "Population", neighboursAxis, title);
 }
-
-
 
 // const chartData= {
 //         type: "line",
@@ -88,7 +76,7 @@ export async function printCountries(c) {
 //             },
 //           ],
 //         },
-    
+
 //         options: {
 //           scales: {
 //             y: {
@@ -131,12 +119,6 @@ export async function printCountries(c) {
 //           },
 //         },
 //       };
-
-
-
-
-
-
 
 // const drawChart = function updateChart(objArr) {
 //   mychart.destroy();
@@ -210,9 +192,24 @@ export async function printCountries(c) {
 //   });
 // };
 
-
-
 // const drawChart = function updateChart(objArr) {
 //   mychart.destroy();
 //   mychart = new Chart(ctx,{});
 // };
+
+
+
+          // [{
+          //   label: "2012",
+          //   data: 1222222,
+          //   backgroundColor: ["#F79489"],
+          //   borderWidth: 0,
+            
+          // },
+
+          // {
+          //   label: "2013",
+          //   data: 333333333,
+          //   backgroundColor: ["#F79489"],
+          //   borderWidth: 0,
+          // }]

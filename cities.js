@@ -1,5 +1,6 @@
 import { spinner, countryDataArr } from "./cont.js";
 import { drawChart } from "./chartIndex.js";
+import { country } from "./index.js";
 
 const citiesObjArr = [];
 const citiesInCountry = [];
@@ -60,34 +61,121 @@ export async function getCitiesForCountry(arr1, c) {
     });
     citiesObj = {};
   });
-  const y=MyCountry.map((n) => n.populationDisplay);
-  const x=MyCountry.map((n) => n.city);
+  const label=MyCountry[0].populationCounts[0].year != undefined ? MyCountry[0].populationCounts[0].year:0;
+  const newLabels=MyCountry.map(labelsCity);
+  const y=MyCountry.map((n) => n.populationCounts[0].value != undefined ? n.populationCounts[0].value:0 );
+//   const x=MyCountry.map((n) => n.city);
+  const x=newLabels.map((n)=>n.map((i)=>i.city));
+  const myDataSet=newLabels.map((n)=>n.map((i)=>i.population));
+  console.log("MY DATTAAA SEEET",bigArrayToDataSet(myDataSet));
+  const allYearsArr=newLabels.map((n)=>n.map((i)=>i.population.map((x)=>x.year)));
+
+  console.log("MY DATA SET: ",myDataSet);
+  console.log("my labels",newLabels);
   const yearsAxis={
-            //   label: "# Of Neighbours",
-            //   data: countryDataArr.map((n) =>
-            //     n.neighbours != undefined ? n.neighbours.length : 0
-            //   ),
-            //   backgroundColor: ["#F79489"],
-            //   borderWidth: 1,
-            //   borderColor: "#F79489",
-            //   yAxisID: "Neigbours",
+                label:'',
+                data:[],
             };
-    drawChart(x, y, "Population",yearsAxis);
-  console.log(MyCountry)
+    const title=`INFO ABOUT ${country.toUpperCase()}`
+    drawChart(x, y, label,yearsAxis,title);
+  console.log(MyCountry);
   return MyCountry;
 }
 
 
-// const y=countryDataArr.map((n) => n.population);
-// const x=countryDataArr.map((n) => n.name);
-// const neighboursAxis={
-//           label: "# Of Neighbours",
-//           data: countryDataArr.map((n) =>
-//             n.neighbours != undefined ? n.neighbours.length : 0
-//           ),
-//           backgroundColor: ["#F79489"],
-//           borderWidth: 1,
-//           borderColor: "#F79489",
-//           yAxisID: "Neigbours",
-//         };
-// drawChart(x, y, "Population", neighboursAxis);
+function labelsCity(n){
+    const nArr=[];
+    nArr.push(n);
+    const arr=[];
+    let obj={};
+    nArr.forEach(e=>{
+        obj.city=e.city;
+        obj.population=e.populationCounts;
+        arr.push(obj);
+        obj={};
+    });
+
+return arr;
+
+}
+function labelsObj(n){
+    const nArr=[];
+    nArr.push(n);
+    const arr=[];
+    let obj={};
+
+
+    nArr.forEach(e=>{
+        if(e!=undefined){
+            obj.city=n.city;
+            obj.year=e.year;
+            obj.value=e.value
+            arr.push(obj);
+        }
+        obj={};
+    });
+    return arr;
+}
+
+
+//   const arrayObj=MyCountry.map((n) => n.populationCounts!= undefined ? 
+// n.populationCounts.map(labelsObj):0 );
+
+// console.log('arrayObj: ',arrayObj);
+
+
+function bigArrayToDataSet(arr){
+
+    // [ [{    }] [ {  } ] [ {   }  ] [ {    } ] [{    }] ]
+    let weHaveit='false';
+    const DataSet=[];
+    const singleObjArr=[];
+    let finalObject={};
+    
+    for (let i = 0; i < arr.length; i++) {
+        const element = arr[i];
+        for (let j = 0; j < element.length; j++) {
+            const secondArr = element[j];
+
+            for (let y = 0; y < secondArr.length; y++) {
+                const obj = secondArr[y];
+                singleObjArr.push(obj);   
+            }
+        }
+        
+    }
+    let year='0';
+    let popArr=[];
+    
+    for (let i = 0; i < singleObjArr.length; i++) {
+        const element = singleObjArr[i];
+        year=element.year;
+        for (let m = 0; m < DataSet.length; m++) {
+            const element = DataSet[m];
+            if(element.year===year){
+                weHaveit=true;
+            }
+        }
+        if(weHaveit===false){
+            finalObject.year=element.year;
+            for (let j = i+1; j < singleObjArr.length; j++) {
+                const check = singleObjArr[j];
+                if(year===check.year){
+                    popArr.push(check.value);
+                    finalObject.value=popArr;
+                }
+                
+            }
+            DataSet.push(finalObject);
+        }
+        popArr=[];
+        finalObject={};
+        weHaveit=false;
+        
+    }
+
+    
+
+    return DataSet;
+
+}

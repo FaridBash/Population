@@ -80,7 +80,7 @@ ctx.style.display = "none";
 //   };
   
 
-export const drawChart = function updateChart(labelsX, labelsY, labelText, newAxisData ) {
+export const drawChart = function updateChart(labelsX, labelsY, labelText, newAxisData, title ) {
     mychart.destroy();
     mychart = new Chart(ctx, {
       type: "line",
@@ -96,6 +96,7 @@ export const drawChart = function updateChart(labelsX, labelsY, labelText, newAx
             borderColor: "#6497F0",
           },
           newAxisData,
+          
         ],
       },
   
@@ -132,7 +133,7 @@ export const drawChart = function updateChart(labelsX, labelsY, labelText, newAx
         plugins: {
           title: {
             display: true,
-            text: ` Continent of ${continent}`,
+            text: title,
             color: "#fff",
             font: {
               size: 20,

@@ -46,11 +46,11 @@ oceania.addEventListener('click',e=>{
 //     alert(ev.target.id);
 // }
 
-
+export let country=``;
 
 window.addEventListener('click', e=>{
    const item=e.target;
-   const country=item.getAttribute('id');
+   country=item.getAttribute('id');
 //    console.log(item.getAttribute('id'));
 if(item.getAttribute('city')==='true'){
     console.log(getCitiesForCountry(countryDataArr, country));
