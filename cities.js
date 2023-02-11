@@ -33,43 +33,51 @@ export async function getCities(){
      export async function getCitiesForCountry(arr1, c){
             let citiesArr=[];
             let citiesObj={};
+            let MyCountry=[];
             const arr2= await getCities();
             
 
 
 
 
-            // arr2.forEach((e)=>{
-            //     if(e.country.toLowerCase()===arr1.name.toLowerCase()){
-            //             citiesObj.city=e.city;
-            //             // citiesArr.push(e.city);
-            //             citiesObj.populationCounts=e.populationCounts;
-            //             citiesArr.push(citiesObj);
-            //     }
-            //     citiesObj={};
-            // });
-            // arr1.name.cities=citiesArr;
-            // citiesArr=[];
-
-
-
-            arr1.forEach(country => {
-                citiesArr=[];
-                arr2.forEach(city=>{
-                    citiesObj={};
-                    if(country.name===city.country){
-                        citiesObj.city=city.city;
+            arr2.forEach((e)=>{
+                if(e.country.toLowerCase()===c.toLowerCase()){
+                        citiesObj.country=c;
+                        citiesObj.city=e.city;
                         // citiesArr.push(e.city);
-                        citiesObj.populationCounts=city.populationCounts;
+                        citiesObj.populationCounts=e.populationCounts;
                         citiesArr.push(citiesObj);
-                        // console.log(citiesArr);
+                        MyCountry.push(citiesObj);
+                }
+                arr1.forEach(e=>{
+                    if(e.name.toLowerCase()===c.toLowerCase()){
+                        e.cities=citiesArr;
                     }
-                });
-                country.cities=citiesArr;  
+                })
+                citiesObj={};
             });
-            console.log('arrrrr: ',arr1);              
+            // citiesArr=[];
+            
 
-            return arr1;
+
+
+            // arr1.forEach(country => {
+            //     citiesArr=[];
+            //     arr2.forEach(city=>{
+            //         citiesObj={};
+            //         if(country.name===city.country){
+            //             citiesObj.city=city.city;
+            //             // citiesArr.push(e.city);
+            //             citiesObj.populationCounts=city.populationCounts;
+            //             citiesArr.push(citiesObj);
+            //             // console.log(citiesArr);
+            //         }
+            //     });
+            //     country.cities=citiesArr;  
+            // });
+            // console.log('arrrrr: ',arr1);              
+
+            return MyCountry;
         }
 
 
