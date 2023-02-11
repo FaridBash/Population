@@ -115,7 +115,7 @@ h4{
 
      #Chart{
       width: 100vw;
-      height: 15%;
+      height: 15vh;
       color: #fff;
       background: #ffffff;
       margin: 2rem;
@@ -180,6 +180,23 @@ h4{
         overflow-y: scroll;
       }
 
+      #Chart{
+        width: 100vw;
+        height: 100vh;
+        margin: auto;
+      }
+      
+      #myChart{
+        width: 100vw;
+        height: 100%;
+        border-radius: 10px;
+        display: none;
+        margin: auto;
+      }
+
+      element.style{
+        height: 500px;
+      }
 
     }
   
