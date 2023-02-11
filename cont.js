@@ -37,7 +37,7 @@ export async function printCountries(c){
     for (let i = 0; i < countries.length; i++) {
                 const element = countries[i];
                 const countryDataObj={};
-                console.log(element);
+                // console.log(element);
                 const country = document.createElement('h4');
                 country.innerText=element.name;
                 country.setAttribute('id',element.name);
@@ -71,7 +71,8 @@ export async function printCountries(c){
                         '#68BBE3'
                     ],
                     borderWidth: 1,
-                    yAxisID:'y'
+                    yAxisID:'y',
+                    borderColor:'#fff'
                 },
                 {
                     label: "# Of Neighbours",
@@ -80,6 +81,7 @@ export async function printCountries(c){
                         '#F79489'
                     ],
                     borderWidth: 1,
+                    borderColor:'#F79489',
                     yAxisID:'Neigbours'
                 },
             ],

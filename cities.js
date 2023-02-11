@@ -2,7 +2,6 @@ import { spinner, countryDataArr } from "./cont.js";
 
 const citiesObjArr=[];
 const citiesInCountry=[];
-
 export async function getCities(){
     try {
         
@@ -21,7 +20,7 @@ export async function getCities(){
                 })
         const data= await getCont.json();
         spinner.setAttribute('hidden', '');
-        // console.log(data);        
+        console.log(data.data);        
         return data.data;
         
         } catch (error) {
@@ -76,7 +75,7 @@ export async function getCities(){
             //     country.cities=citiesArr;  
             // });
             // console.log('arrrrr: ',arr1);              
-
+            // drawChart(MyCountry);
             return MyCountry;
         }
 
@@ -96,3 +95,76 @@ export async function getCities(){
         //             }
                     
         // }
+
+
+        // const drawChart=function updateChart(objArr){
+
+        //     mychart.destroy();
+        //     mychart=new Chart(ctx, {
+        //         type: "line",
+        //         data: {
+        //             labels: objArr.map(n=>n.city),
+        //             datasets: [
+        //                 {
+        //                     label: "Population",
+        //                     data: objArr.map(n=>n.population),
+        //                     backgroundColor:[
+        //                         '#68BBE3'
+        //                     ],
+        //                     borderWidth: 1,
+        //                     yAxisID:'y'
+        //                 },
+        //                 // {
+        //                 //     label: "# Of Neighbours",
+        //                 //     data:objArr.map(n=>n.neighbours!=undefined? n.neighbours.length:0),
+        //                 //     backgroundColor:[
+        //                 //         '#F79489'
+        //                 //     ],
+        //                 //     borderWidth: 1,
+        //                 //     yAxisID:'Neigbours'
+        //                 // },
+        //             ],
+        //         },
+        
+        //         options: {
+        //             scales: {
+        //                 y: {
+        //                     beginAtZero: true,
+        //                     ticks:{
+        //                         color:"#fff"
+        //                     }
+        //                 },
+        //                 Neigbours:{
+        //                     beginAtZero: true,
+        //                     position:'right',
+        //                     ticks:{
+        //                         color:"#fff"
+        //                     }
+                            
+        //                 },
+        //                 x:{
+                            
+        //                     ticks:{
+        //                         color:"#fff"
+        //                     }
+        //                 }
+        //             },
+        //             plugins: {
+        //                 title: {
+        //                     display: true,
+        //                     text: ` Continent of ${continent}`,
+        //                     color:"#fff",
+        //                     font:{  
+        //                         size:20
+        //                     }
+                        
+        //                 },
+        //                 label:{
+        //                     fontColor:['rgba(255,104,104,1)']
+        //                 }
+        //             },
+        //         },
+        //     });
+        // }
+
+        
