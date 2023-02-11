@@ -45,8 +45,19 @@ export async function printCountries(c) {
 
     countryDataArr.push(countryDataObj);
   }
-
-  drawChart(countryDataArr);
+  const y=countryDataArr.map((n) => n.population);
+  const x=countryDataArr.map((n) => n.name);
+  const neighboursAxis={
+            label: "# Of Neighbours",
+            data: countryDataArr.map((n) =>
+              n.neighbours != undefined ? n.neighbours.length : 0
+            ),
+            backgroundColor: ["#F79489"],
+            borderWidth: 1,
+            borderColor: "#F79489",
+            yAxisID: "Neigbours",
+          };
+  drawChart(x, y, "Population", neighboursAxis);
 }
 
 
